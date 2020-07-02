@@ -39,23 +39,37 @@ public class Main {
         Thread firstThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                long threadOneTime = System.currentTimeMillis();
                 for (int i = 0; i < arrOne.length; i++) {
                     arrOne[i] = (float)(arrOne[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
                 }
+                System.out.println("Первый поток: " + (System.currentTimeMillis()-threadOneTime));
             }
         });
+
+//        long threadOneTime = System.currentTimeMillis();
         firstThread.start();
+//        try {
+//            firstThread.join();
+//            System.out.println("Первый поток: " + (System.currentTimeMillis()-threadOneTime));
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
 
         Thread secondThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                long threadTwoTime = System.currentTimeMillis();
                 for (int i = 0; i < arrTwo.length; i++) {
                     arrTwo[i] = (float) (arrTwo[i] * Math.sin(0.2f + (i+h) / 5) * Math.cos(0.2f + (i+h) / 5) * Math.cos(0.4f + (i+h) / 2));
                 }
+                System.out.println("Второй поток: " + (System.currentTimeMillis()-threadTwoTime));
             }
 
         });
         secondThread.start();
+
 
         try {
             firstThread.join();
@@ -76,5 +90,6 @@ public class Main {
         System.out.println();
         System.out.println("Общее время: " + (part1+part2+part3));
     }
+
 
 }
