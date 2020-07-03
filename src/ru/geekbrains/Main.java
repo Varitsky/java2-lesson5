@@ -43,7 +43,7 @@ public class Main {
                 for (int i = 0; i < arrOne.length; i++) {
                     arrOne[i] = (float)(arrOne[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
                 }
-                System.out.println("Первый поток: " + (System.currentTimeMillis()-threadOneTime));
+                System.out.println("Первый массив (1/2): " + (System.currentTimeMillis()-threadOneTime));
             }
         });
 
@@ -62,9 +62,9 @@ public class Main {
             public void run() {
                 long threadTwoTime = System.currentTimeMillis();
                 for (int i = 0; i < arrTwo.length; i++) {
-                    arrTwo[i] = (float) (arrTwo[i] * Math.sin(0.2f + (i+h) / 5) * Math.cos(0.2f + (i+h) / 5) * Math.cos(0.4f + (i+h) / 2));
+                    arrTwo[i] = (float) (arrTwo[i] * Math.sin(0.2f + (i) / 5) * Math.cos(0.2f + (i) / 5) * Math.cos(0.4f + (i) / 2));
                 }
-                System.out.println("Второй поток: " + (System.currentTimeMillis()-threadTwoTime));
+                System.out.println("Второй массив (2/2): " + (System.currentTimeMillis()-threadTwoTime));
             }
 
         });
